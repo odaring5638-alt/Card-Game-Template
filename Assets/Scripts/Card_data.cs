@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Card_data", menuName = "Cards/Card_data", order = 1)]
-public class Card_data : ScriptableObject
+[CreateAssetMenu(fileName = "Card_Data", menuName = "Scriptable Objects/Card_Data")]
+public class Card_Data : ScriptableObject
 {
     public string card_name;
     public string description;
-    public int health;
+    public int Sweetness;
     public int cost;
-    public int damage;
-    public Sprite sprite;
+    public int Sabotage;
+    public Sprite sprite;   
+
+    
 
 }

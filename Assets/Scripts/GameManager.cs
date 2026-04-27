@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public List<Card> deck = new List<Card>();
-    public List<Card> player_deck = new List<Card>();
-    public List<Card> ai_deck = new List<Card>();
-    public List<Card> player_hand = new List<Card>();
-    public List<Card> ai_hand = new List<Card>();
-    public List<Card> discard_pile = new List<Card>();
+    public List<Card_Data> deck = new List<Card_Data>();
+    public List<Card_Data> player_deck = new List<Card_Data>();
+    public List<Card_Data> ai_deck = new List<Card_Data>();
+    public List<Card_Data> player_hand = new List<Card_Data>();
+    public List<Card_Data> ai_hand = new List<Card_Data>();
+    public List<Card_Data> discard_pile = new List<Card_Data>();
+
+    public Card blank;
+    public Vector3 player_hand_spawnpoint;
+    public Vector3 offset;
+
+    public Canvas canvas;
+
+
 
     private void Awake()
     {
@@ -27,7 +36,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Deal();
     }
 
     // Update is called once per frame
@@ -38,12 +47,29 @@ public class GameManager : MonoBehaviour
 
     void Deal()
     {
-
+        Shuffle(player_deck);
+        Shuffle(ai_deck);
+        for (int i = 0; i < 9; i++)
+        {
+            Card current_card = Instantiate(blank, player_hand_spawnpoint + offset, Quaternion.identity);
+            offset.x += 100;
+            current_card.data = player_deck[0];
+            player_deck.Remove(current_card.data);
+            player_hand.Add(current_card.data);
+            current_card.transform.SetParent(canvas.transform);
+        }
     }
 
-    void Shuffle()
+    void Shuffle(List<Card_Data> _deck)
     {
-
+        System.Random rngg = new System.Random();
+        for (int i = 0; i < _deck.Count; i++)
+        {
+            int randomIndex = rngg.Next(i, _deck.Count);
+            Card_Data temp = _deck[i];
+            _deck[i] = _deck[randomIndex];
+            _deck[randomIndex] = temp;
+        }
     }
 
     void AI_Turn()
