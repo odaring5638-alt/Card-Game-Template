@@ -1,35 +1,35 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Draw_Pile : MonoBehaviour
+public class Draw_Pile : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int draws_remaining = 8;
+
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        Debug.Log("Draw pile clicked, draws remaining: " + draws_remaining);
+        if (GameManager.gm.player_deck.Count > 0 && draws_remaining > 0)
+        {
+            Draw();
+            draws_remaining--;
+        }
+        else if (draws_remaining == 0)
+        {
+            Debug.Log("No draws remaining!");
+        }
+        else
+        {
+            Debug.Log("No cards left in deck!");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    //spawn in a card when clicked
     void Draw()
     {
-        //instantiate a card from the player deck and add it to the player hand
-        Card current_card = Instantiate(GameManager.gm.blank, transform.position, Quaternion.identity);
+        Card current_card = Instantiate(GameManager.gm.blank, Vector3.zero, Quaternion.identity);
         current_card.data = GameManager.gm.player_deck[0];
         GameManager.gm.player_deck.Remove(current_card.data);
         GameManager.gm.player_hand.Add(current_card.data);
         current_card.transform.SetParent(GameManager.gm.canvas.transform);
+        Debug.Log("Card drawn: " + current_card.data.card_name);
     }
-
-    void OnMouseDown()
-    {
-        if (GameManager.gm.player_deck.Count > 0)
-        {
-            Draw();
-        }
-    }
-
 }

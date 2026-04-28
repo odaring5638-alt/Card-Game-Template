@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         Shuffle(player_deck);
         Shuffle(ai_deck);
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 8; i++)
         {
             Card current_card = Instantiate(blank, player_hand_spawnpoint + offset, Quaternion.identity);
             offset.x += 100;
