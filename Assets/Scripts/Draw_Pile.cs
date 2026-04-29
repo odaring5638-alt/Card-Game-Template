@@ -8,7 +8,7 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Draw pile clicked, draws remaining: " + draws_remaining);
-        if (GameManager.gm.player_deck.Count > 0 && draws_remaining > 0)
+        if (draws_remaining > 0)
         {
             Draw();
             draws_remaining--;
@@ -33,3 +33,4 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
         Debug.Log("Card drawn: " + current_card.data.card_name);
     }
 }
+//GameManager.gm.player_deck.Count > 0 && 
