@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public List<Card_Data> player_deck = new List<Card_Data>();
     public List<Card_Data> ai_deck = new List<Card_Data>();
     public List<Card_Data> player_hand = new List<Card_Data>();
-    public List<Card_Data> ai_hand = new List<Card_Data>();
+    //public List<Card_Data> ai_hand = new List<Card_Data>();
     public List<Card_Data> discard_pile = new List<Card_Data>();
 
     public Card blank;
