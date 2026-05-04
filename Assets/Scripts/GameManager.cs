@@ -49,12 +49,16 @@ public class GameManager : MonoBehaviour
     {
         Shuffle(player_deck);
         Shuffle(ai_deck);
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 4; i++)
         {
             Card current_card = Instantiate(blank, player_hand_spawnpoint + offset, Quaternion.identity);
             offset.x += 100;
             current_card.data = player_deck[0];
-            //player_deck.Remove(current_card.data);
+            //comment this out if issues with drawing cards 
+            //  |
+            //  |
+            //  v
+            player_deck.Remove(current_card.data);
             player_hand.Add(current_card.data);
             current_card.transform.SetParent(canvas.transform);
         }
