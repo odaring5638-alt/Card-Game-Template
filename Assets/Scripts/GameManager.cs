@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     //public List<Card_Data> ai_hand = new List<Card_Data>();
     public List<Card_Data> discard_pile = new List<Card_Data>();
 
+    public List<Card_Data> ai_hand = new List<Card_Data>();
+    public Vector3 ai_hand_spawnpoint;
+
     public Card blank;
     public Vector3 player_hand_spawnpoint;
     public Vector3 offset;
@@ -49,18 +52,27 @@ public class GameManager : MonoBehaviour
     {
         Shuffle(player_deck);
         Shuffle(ai_deck);
+
+        Vector3 playerOffset = Vector3.zero;
+        Vector3 aiOffset = Vector3.zero;
+
         for (int i = 0; i < 4; i++)
         {
-            Card current_card = Instantiate(blank, player_hand_spawnpoint + offset, Quaternion.identity);
-            offset.x += 100;
-            current_card.data = player_deck[0];
-            //comment this out if issues with drawing cards 
-            //  |
-            //  |
-            //  v
-            player_deck.Remove(current_card.data);
-            player_hand.Add(current_card.data);
-            current_card.transform.SetParent(canvas.transform);
+            // Player card
+            Card playerCard = Instantiate(blank, player_hand_spawnpoint + playerOffset, Quaternion.identity);
+            playerCard.data = player_deck[0];
+            player_deck.RemoveAt(0);
+            player_hand.Add(playerCard.data);
+            playerCard.transform.SetParent(canvas.transform, false);
+            playerOffset.x += 100;
+
+            // AI card
+            Card aiCard = Instantiate(blank, ai_hand_spawnpoint + aiOffset, Quaternion.identity);
+            aiCard.data = ai_deck[0];
+            ai_deck.RemoveAt(0);
+            ai_hand.Add(aiCard.data);
+            aiCard.transform.SetParent(canvas.transform, false);
+            aiOffset.x += 100;
         }
     }
 
