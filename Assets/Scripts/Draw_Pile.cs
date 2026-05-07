@@ -5,6 +5,8 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
 {
     public int draws_remaining = 8;
 
+    public int player_turns = 0;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Draw pile clicked, draws remaining: " + draws_remaining);
