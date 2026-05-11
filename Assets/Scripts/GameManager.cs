@@ -93,7 +93,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    void Player_Turn()
+    {
+        // 
+    }
 
     
 }
