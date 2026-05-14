@@ -8,7 +8,7 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Draw pile clicked, draws remaining: " + draws_remaining);
-        if (draws_remaining > 0)
+        if (GameManager.gm.player_deck.Count > 0 && draws_remaining > 0)
         {
             Draw();
             draws_remaining--;
