@@ -373,6 +373,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8745e75c89b64ea2bf68b3a09300052, type: 2}
   - {fileID: 11400000, guid: 2bc879e4fb22b4e1aa9c8e95b616d9b5, type: 2}
   player_deck:
+<<<<<<< HEAD
   - {fileID: 11400000, guid: 8dd9e9223b26d41edb88e6ba510546e8, type: 2}
   - {fileID: 11400000, guid: 07b2ec67bacf8418e805d8622bcd4285, type: 2}
   - {fileID: 11400000, guid: 69c96330d58534ed2b6224c6fb8c1ce7, type: 2}
@@ -381,9 +382,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8dd9e9223b26d41edb88e6ba510546e8, type: 2}
   - {fileID: 11400000, guid: 07b2ec67bacf8418e805d8622bcd4285, type: 2}
   - {fileID: 11400000, guid: 69c96330d58534ed2b6224c6fb8c1ce7, type: 2}
+=======
+  - {fileID: 11400000, guid: 17892b6c425364454bac887c657f76f3, type: 2}
+  - {fileID: 11400000, guid: 07b2ec67bacf8418e805d8622bcd4285, type: 2}
+  - {fileID: 11400000, guid: 8dd9e9223b26d41edb88e6ba510546e8, type: 2}
+  - {fileID: 11400000, guid: 69c96330d58534ed2b6224c6fb8c1ce7, type: 2}
+  ai_deck:
+  - {fileID: 11400000, guid: 8dd9e9223b26d41edb88e6ba510546e8, type: 2}
+  - {fileID: 11400000, guid: 69c96330d58534ed2b6224c6fb8c1ce7, type: 2}
+  - {fileID: 11400000, guid: 07b2ec67bacf8418e805d8622bcd4285, type: 2}
+>>>>>>> d180420bf39bb4e090dbe84f72b779ea51ef3cc1
   - {fileID: 11400000, guid: 17892b6c425364454bac887c657f76f3, type: 2}
   player_hand: []
   discard_pile: []
+  ai_hand: []
+  ai_hand_spawnpoint: {x: 0, y: 0, z: 0}
   blank: {fileID: 4608709814338197990, guid: a5e438d4aef484d6a85422d9c9d31107, type: 3}
   player_hand_spawnpoint: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: 0}
@@ -671,7 +684,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2419790433992960595, guid: 76117903e2de04996a65ce572847a038, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1.0162
+      value: 1.0081
       objectReference: {fileID: 0}
     - target: {fileID: 2419790433992960595, guid: 76117903e2de04996a65ce572847a038, type: 3}
       propertyPath: m_LocalPosition.x
@@ -703,11 +716,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2419790433992960595, guid: 76117903e2de04996a65ce572847a038, type: 3}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< HEAD
       value: 804
       objectReference: {fileID: 0}
     - target: {fileID: 2419790433992960595, guid: 76117903e2de04996a65ce572847a038, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 209
+=======
+      value: 757.714
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419790433992960595, guid: 76117903e2de04996a65ce572847a038, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 210
+>>>>>>> d180420bf39bb4e090dbe84f72b779ea51ef3cc1
       objectReference: {fileID: 0}
     - target: {fileID: 2419790433992960595, guid: 76117903e2de04996a65ce572847a038, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
