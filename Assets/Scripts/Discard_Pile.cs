@@ -10,17 +10,17 @@ public class Discard_Pile : MonoBehaviour
     {
         discarded_cards.Add(card.data);
         GameManager.gm.discard_pile.Add(card.data);
-        card_count++;
-        print("Card Discarded: " + card.data.card_name + " | Total: " + card_count);
-        Destroy(card.gameObject);
+        GameManager.gm.player_hand.Remove(card.data);
+
         GameManager.gm.player_sweetness += card.data.Sweetness;
         GameManager.gm.ai_sweetness -= card.data.Sabotage;
-        
-        GameManager.gm.player_hand.Remove(card.data);
-        GameManager.gm.discard_pile.Add(card.data);
-        Destroy(card.gameObject);
 
-        // trigger AI turn automatically
+        card_count++;
+        print("Card Discarded: " + card.data.card_name + " | Total: " + card_count);
+
+        card.transform.SetParent(transform, false);
+        card.transform.localPosition = Vector3.zero;
+
         GameManager.gm.AI_Turn();
     }
 }

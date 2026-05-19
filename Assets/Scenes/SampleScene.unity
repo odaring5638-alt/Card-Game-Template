@@ -383,15 +383,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69c96330d58534ed2b6224c6fb8c1ce7, type: 2}
   - {fileID: 11400000, guid: 17892b6c425364454bac887c657f76f3, type: 2}
   player_hand: []
-  discard_pile: []
   ai_hand: []
-  ai_hand_spawnpoint: {x: 0, y: 0, z: 0}
-  blank: {fileID: 4608709814338197990, guid: a5e438d4aef484d6a85422d9c9d31107, type: 3}
-  player_hand_spawnpoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  canvas: {fileID: 4392464444410497821}
+  discard_pile: []
+  ai_card_objects: []
   player_sweetness: 0
   ai_sweetness: 0
+  blank: {fileID: 4608709814338197990, guid: a5e438d4aef484d6a85422d9c9d31107, type: 3}
+  player_hand_spawnpoint: {x: -300, y: -150, z: 0}
+  ai_hand_spawnpoint: {x: -300, y: 150, z: 0}
+  offset: {x: 0, y: 0, z: 0}
+  canvas: {fileID: 4392464444410497821}
+  discard_pile_transform: {fileID: 0}
 --- !u!4 &622756966
 Transform:
   m_ObjectHideFlags: 0

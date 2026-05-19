@@ -10,6 +10,9 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 {
     public Card_Data data;
 
+    public enum Owner { Player, AI }
+    public Owner owner;
+
     public string card_name;
     public string description;
     public int Sweetness;
@@ -52,16 +55,23 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (owner == Owner.AI)
+        {
+            eventData.pointerDrag = null;
+            return;
+        }
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (owner == Owner.AI) return;
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (owner == Owner.AI) return;
         canvasGroup.blocksRaycasts = true;
 
         Debug.Log("Drop detected, hovering over " + eventData.hovered.Count + " objects");
