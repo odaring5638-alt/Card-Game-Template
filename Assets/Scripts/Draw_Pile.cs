@@ -32,7 +32,8 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
         current_card.data = GameManager.gm.deck[0];
         GameManager.gm.deck.Remove(current_card.data);
         GameManager.gm.player_hand.Add(current_card.data);
-        current_card.transform.SetParent(GameManager.gm.canvas.transform);
+        current_card.transform.SetParent(GameManager.gm.canvas.transform, false); // false keeps local scale intact
+        current_card.transform.localPosition = new Vector3(0, -300, 0); // adjust these values to wherever you want drawn cards to appear
         Debug.Log("Card drawn: " + current_card.data.card_name);
     }
 }

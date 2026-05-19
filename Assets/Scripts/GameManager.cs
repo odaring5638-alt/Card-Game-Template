@@ -22,7 +22,46 @@ public class GameManager : MonoBehaviour
 
     public Canvas canvas;
 
+    public int player_sweetness = 0;
+public int ai_sweetness = 0;
 
+public void AI_Turn()
+{
+    if (ai_hand.Count == 0)
+    {
+        Debug.Log("AI has no cards left!");
+        CheckWinCondition();
+        return;
+    }
+
+    // Pick a random card from ai_hand
+    System.Random rng = new System.Random();
+    int randomIndex = rng.Next(0, ai_hand.Count);
+    Card_Data chosen = ai_hand[randomIndex];
+
+    // Apply the card effects
+    ai_sweetness += chosen.Sweetness;
+    player_sweetness -= chosen.Sabotage;
+
+    ai_hand.RemoveAt(randomIndex);
+    discard_pile.Add(chosen);
+
+    Debug.Log("AI played: " + chosen.card_name);
+    Debug.Log("AI sweetness: " + ai_sweetness + " | Player sweetness: " + player_sweetness);
+}
+
+void CheckWinCondition()
+{
+    if (player_hand.Count == 0 && ai_hand.Count == 0)
+    {
+        if (player_sweetness > ai_sweetness)
+            Debug.Log("Player wins!");
+        else if (ai_sweetness > player_sweetness)
+            Debug.Log("AI wins!");
+        else
+            Debug.Log("Its a tie!");
+    }
+}
 
     private void Awake()
     {
@@ -88,10 +127,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void AI_Turn()
-    {
-
-    }
+    
 
     void Player_Turn()
     {
