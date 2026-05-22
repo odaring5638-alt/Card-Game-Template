@@ -3,24 +3,26 @@ using UnityEngine.EventSystems;
 
 public class Draw_Pile : MonoBehaviour, IPointerClickHandler
 {
-    public int draws_remaining = 8;
-
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Draw pile clicked, draws remaining: " + draws_remaining);
-        if (GameManager.gm.deck.Count > 0 && draws_remaining > 0)
-        {
-            Draw();
-            draws_remaining--;
-        }
-        else
-        {
-            Debug.Log("No cards left to draw!");
-        }
+        Draw();
     }
 
     void Draw()
     {
+        if (GameManager.gm.deck.Count == 0)
+        {
+            Debug.Log("Deck is empty, reshuffling discard pile!");
+            GameManager.gm.deck.AddRange(GameManager.gm.discard_pile);
+            GameManager.gm.discard_pile.Clear();
+        }
+
+        if (GameManager.gm.deck.Count == 0)
+        {
+            Debug.Log("No cards left at all!");
+            return;
+        }
+
         // Player draws
         Card current_card = Instantiate(GameManager.gm.blank, Vector3.zero, Quaternion.identity);
         current_card.data = GameManager.gm.deck[0];

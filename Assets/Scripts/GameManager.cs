@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public int player_sweetness = 0;
     public int ai_sweetness = 0;
+    public int player_points = 35;
+    public int ai_points = 35;
 
     public Card blank;
     public Vector3 player_hand_spawnpoint;
@@ -102,29 +104,40 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        List<Card> affordable = ai_card_objects.FindAll(c => c.data.cost <= ai_points);
+
+        if (affordable.Count == 0)
+        {
+            Debug.Log("AI cant afford any cards!");
+            CheckWinCondition();
+            return;
+        }
+
         System.Random rng = new System.Random();
-        int randomIndex = rng.Next(0, ai_card_objects.Count);
-        Card chosenCard = ai_card_objects[randomIndex];
+        int randomIndex = rng.Next(0, affordable.Count);
+        Card chosenCard = affordable[randomIndex];
 
         ai_sweetness += chosenCard.data.Sweetness;
         player_sweetness -= chosenCard.data.Sabotage;
+        ai_points -= chosenCard.data.cost;
 
         ai_hand.Remove(chosenCard.data);
         discard_pile.Add(chosenCard.data);
-        ai_card_objects.RemoveAt(randomIndex);
+        ai_card_objects.Remove(chosenCard);
 
         chosenCard.transform.SetParent(discard_pile_transform, false);
         chosenCard.transform.localPosition = Vector3.zero;
 
         Debug.Log("AI played: " + chosenCard.data.card_name);
+        Debug.Log("AI points remaining: " + ai_points);
         Debug.Log("AI sweetness: " + ai_sweetness + " | Player sweetness: " + player_sweetness);
 
         CheckWinCondition();
     }
 
-    void CheckWinCondition()
+    public void CheckWinCondition()
     {
-        if (player_hand.Count == 0 && ai_card_objects.Count == 0)
+        if (player_points <= 0 || ai_points <= 0)
         {
             if (player_sweetness > ai_sweetness)
                 Debug.Log("Player wins!");
