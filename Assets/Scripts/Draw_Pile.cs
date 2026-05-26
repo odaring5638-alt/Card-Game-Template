@@ -23,7 +23,7 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // Player draws
+    
         Card current_card = Instantiate(GameManager.gm.blank, Vector3.zero, Quaternion.identity);
         current_card.data = GameManager.gm.deck[0];
         current_card.owner = Card.Owner.Player;
@@ -33,7 +33,7 @@ public class Draw_Pile : MonoBehaviour, IPointerClickHandler
         current_card.transform.localPosition = new Vector3(0, -300, 0);
         Debug.Log("Player drew: " + current_card.data.card_name);
 
-        // AI draws
+     
         if (GameManager.gm.deck.Count > 0)
         {
             Card aiCard = Instantiate(GameManager.gm.blank, Vector3.zero, Quaternion.identity);
